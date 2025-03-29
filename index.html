@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书馆管理系统 - 登录</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .borrow-container {
+            margin-top: 20px;
+        }
+
+        .borrowed-books {
+            margin-top: 20px;
+        }
+
+        .borrowed-books ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .borrowed-books li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>图书馆管理系统 - 登录</h2>
+        <input type="text" id="username" placeholder="用户名">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="login()">登录</button>
+        <div id="error-message" class="error-message"></div>
+        <div class="borrow-container" style="display: none;" id="borrow-form">
+            <h3>借阅图书</h3>
+            <input type="text" id="borrow-title" placeholder="图书标题">
+            <input type="text" id="borrow-author" placeholder="图书作者">
+            <input type="text" id="borrow-isbn" placeholder="图书 ISBN">
+            <button onclick="borrowBook()">借阅</button>
+        </div>
+        <div class="borrowed-books" style="display: none;" id="borrowed-books-list">
+            <h3>已借阅图书</h3>
+            <ul id="books-list"></ul>
+        </div>
+    </div>
+    <script>
+        let currentUser;
+        let allUsers;
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // 读取 JSON 文件
+            fetch('users.json')
+              .then(response => response.json())
+              .then(data => {
+                    allUsers = data;
+                    const user = data.find(u => u.username === username && u.password === password);
+                    if (user) {
+                        alert('登录成功！');
+                        currentUser = user;
+                        document.getElementById('borrow-form').style.display = 'block';
+                        document.getElementById('borrowed-books-list').style.display = 'block';
+                        displayBorrowedBooks();
+                    } else {
+                        document.getElementById('error-message').textContent = '用户名或密码错误';
+                    }
+                })
+              .catch(error => {
+                    console.error('读取用户数据时出错:', error);
+                    document.getElementById('error-message').textContent = '读取用户数据时出错，请稍后再试';
+                });
+        }
+
+        function borrowBook() {
+            const title = document.getElementById('borrow-title').value;
+            const author = document.getElementById('borrow-author').value;
+            const isbn = document.getElementById('borrow-isbn').value;
+
+            if (title && author && isbn) {
+                const newBook = {
+                    title: title,
+                    author: author,
+                    ISBN: isbn
+                };
+                currentUser.borrowedBooks.push(newBook);
+                alert('借阅成功！');
+                console.log('当前用户借阅信息更新为:', currentUser.borrowedBooks);
+                displayBorrowedBooks();
+                // 实际应用中需要将更新后的 allUsers 保存回 users.json 文件
+            } else {
+                alert('请填写完整的图书信息');
+            }
+        }
+
+        function displayBorrowedBooks() {
+            const booksList = document.getElementById('books-list');
+            booksList.innerHTML = '';
+            currentUser.borrowedBooks.forEach(book => {
+                const li = document.createElement('li');
+                li.textContent = `${book.title} - ${book.author} (ISBN: ${book.ISBN})`;
+                const returnButton = document.createElement('button');
+                returnButton.textContent = '归还';
+                returnButton.onclick = () => returnBook(book.ISBN);
+                li.appendChild(returnButton);
+                booksList.appendChild(li);
+            });
+        }
+
+        function returnBook(isbn) {
+            const index = currentUser.borrowedBooks.findIndex(book => book.ISBN === isbn);
+            if (index!== -1) {
+                currentUser.borrowedBooks.splice(index, 1);
+                alert('归还成功！');
+                displayBorrowedBooks();
+                // 实际应用中需要将更新后的 allUsers 保存回 users.json 文件
+            } else {
+                alert('未找到该图书的借阅记录');
+            }
+        }
+    </script>
+</body>
+
+</html>    

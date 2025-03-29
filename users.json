@@ -1,0 +1,67 @@
+[
+    {
+        "username": "user1",
+        "password": "pass123",
+        "borrowedBooks": [
+            {
+                "title": "Python Crash Course",
+                "author": "Eric Matthes",
+                "ISBN": "978-1593276034"
+            },
+            {
+                "title": "Clean Code",
+                "author": "Robert C. Martin",
+                "ISBN": "978-0132350884"
+            }
+        ]
+    },
+    {
+        "username": "user2",
+        "password": "pass456",
+        "borrowedBooks": [
+            {
+                "title": "The Pragmatic Programmer",
+                "author": "Andrew Hunt, David Thomas",
+                "ISBN": "978-0201616224"
+            }
+        ]
+    },
+    {
+        "username": "user3",
+        "password": "pass789",
+        "borrowedBooks": [
+            {
+                "title": "JavaScript: The Definitive Guide",
+                "author": "David Flanagan",
+                "ISBN": "978-1449393854"
+            },
+            {
+                "title": "Learning React",
+                "author": "Alex Banks, Eve Porcello",
+                "ISBN": "978-1491954620"
+            }
+        ]
+    },
+    {
+        "username": "user4",
+        "password": "passabc",
+        "borrowedBooks": [
+            {
+                "title": "HTML and CSS: Design and Build Websites",
+                "author": "Jon Duckett",
+                "ISBN": "978-1118008188"
+            }
+        ]
+    },
+    {
+        "username": "user5",
+        "password": "passdef",
+        "borrowedBooks": [
+            {
+                "title": "Database Systems: The Complete Book",
+                "author": "Hector Garcia-Molina, Jeffrey D. Ullman, Jennifer Widom",
+                "ISBN": "978-0131873254"
+            }
+        ]
+    }
+]    
