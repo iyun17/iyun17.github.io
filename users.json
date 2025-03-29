@@ -1,66 +1,66 @@
 [
     {
-        "username": "user1",
-        "password": "pass123",
+        "username": "用户1",
+        "password": "123456",
         "borrowedBooks": [
             {
-                "title": "Python Crash Course",
-                "author": "Eric Matthes",
-                "ISBN": "978-1593276034"
+                "title": "Python 编程从入门到实践",
+                "author": "埃里克·马瑟斯",
+                "ISBN": "978-7-115-42802-8"
             },
             {
-                "title": "Clean Code",
-                "author": "Robert C. Martin",
-                "ISBN": "978-0132350884"
+                "title": "代码整洁之道",
+                "author": "罗伯特·C. 马丁",
+                "ISBN": "978-7-111-40229-9"
             }
         ]
     },
     {
-        "username": "user2",
-        "password": "pass456",
+        "username": "用户2",
+        "password": "654321",
         "borrowedBooks": [
             {
-                "title": "The Pragmatic Programmer",
-                "author": "Andrew Hunt, David Thomas",
-                "ISBN": "978-0201616224"
+                "title": "流畅的 Python",
+                "author": "卢西亚诺·拉马略",
+                "ISBN": "978-7-115-45472-0"
             }
         ]
     },
     {
-        "username": "user3",
-        "password": "pass789",
+        "username": "用户3",
+        "password": "abcdef",
         "borrowedBooks": [
             {
-                "title": "JavaScript: The Definitive Guide",
-                "author": "David Flanagan",
-                "ISBN": "978-1449393854"
+                "title": "JavaScript 高级程序设计",
+                "author": "马特·弗里斯比",
+                "ISBN": "978-7-115-54070-6"
             },
             {
-                "title": "Learning React",
-                "author": "Alex Banks, Eve Porcello",
-                "ISBN": "978-1491954620"
+                "title": "深入理解 React 技术栈",
+                "author": "程墨",
+                "ISBN": "978-7-121-33677-1"
             }
         ]
     },
     {
-        "username": "user4",
-        "password": "passabc",
+        "username": "用户4",
+        "password": "defabc",
         "borrowedBooks": [
             {
-                "title": "HTML and CSS: Design and Build Websites",
-                "author": "Jon Duckett",
-                "ISBN": "978-1118008188"
+                "title": "HTML5 权威指南",
+                "author": "托马斯·A. 格林斯潘",
+                "ISBN": "978-7-115-27771-0"
             }
         ]
     },
     {
-        "username": "user5",
-        "password": "passdef",
+        "username": "用户5",
+        "password": "1a2b3c",
         "borrowedBooks": [
             {
-                "title": "Database Systems: The Complete Book",
-                "author": "Hector Garcia-Molina, Jeffrey D. Ullman, Jennifer Widom",
-                "ISBN": "978-0131873254"
+                "title": "数据库系统概念",
+                "author": "亚伯拉罕·西尔伯沙茨",
+                "ISBN": "978-7-111-56662-8"
             }
         ]
     }
