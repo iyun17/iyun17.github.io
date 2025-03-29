@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图书馆管理系统 - 登录</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 登录成功弹窗样式 */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        /* 遮罩层样式 */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,6 +54,11 @@
             <ul id="books-list"></ul>
         </div>
     </div>
+    <div class="success-modal" id="success-modal">
+        <p>登录成功！</p>
+        <button onclick="closeModal()">确定</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
     <script>
         let currentUser;
         let allUsers;
@@ -42,10 +74,13 @@
                     allUsers = data;
                     const user = data.find(u => u.username === username && u.password === password);
                     if (user) {
-                        alert('登录成功！');
+                        showSuccessModal();
                         currentUser = user;
                         document.getElementById('borrow-form').style.display = 'block';
                         document.getElementById('borrowed-books-list').style.display = 'block';
+                        document.getElementById('username').style.display = 'none';
+                        document.getElementById('password').style.display = 'none';
+                        document.querySelector('.login-container button').style.display = 'none';
                         displayBorrowedBooks();
                     } else {
                         document.getElementById('error-message').textContent = '用户名或密码错误';
@@ -102,6 +137,16 @@
             } else {
                 alert('未找到该图书的借阅记录');
             }
+        }
+
+        function showSuccessModal() {
+            document.getElementById('success-modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </body>
